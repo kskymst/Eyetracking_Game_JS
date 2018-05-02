@@ -90,11 +90,8 @@
         let x = [];
         let y = [];
         let xy = JSON.parse(data);
-        console.log(xy);
         for (let i = 0; i < xy.length; i++){
-            // console.log(xy);
             if(xy[i] === null){
-                console.log("nullです");
             }else if(xy[i][0] <= 200 && xy[i][1] <= 160 ){
                 area1++;
             }else if(xy[i][0] <= 400 && xy[i][1] <= 160 ){
@@ -172,9 +169,6 @@
         for(let t = 1; t <= 35 ; t++){
             let currentArea = "area" + [t];
             let currentPoint = eval(currentArea) * 5;
-            console.log(currentArea)
-            // console.log(eval(currentArea));
-            // $("#" + currentArea).text(currentPoint);
             if(currentPoint <= 25 ){
                 $("#" + currentArea).css("background","rgba(255, 255, 255, 0.7)");
             }else if(currentPoint <= 50){
