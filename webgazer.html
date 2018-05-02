@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>好きな画像を...</title>
+    <link rel="icon" type="image/png" href="img/eye.jpg">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/jquery-3.2.1.js"></script>
+    <style>
+        #start_mask{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            z-index:100;
+            background:white;
+        }
+
+        #start_mask p{
+            font-size:32px;
+            text-align: center;
+        }
+
+        #start_mask div{
+            display:inline;
+            position:fixed;
+            border:1px solid black;
+            border-radius:100px;
+            padding:16px;
+            cursor: pointer;
+        }
+
+        .point1{
+            top:0;
+            left:0px;
+        }
+        .point2{
+            top:25%;
+            left:15%;
+        }
+        .point3{
+            top:50%;
+            left:0%;
+        }
+        .point4{
+            top:75%;
+            left:15%;
+        }
+        .point5{
+            top:93%;
+            left:0%;
+        }
+        .point6{
+            top:90%;
+            left:25%;
+        }
+        .point7{
+            top:75%;
+            left:40%;
+        }
+        .point8{
+            top:93%;
+            left:60%;
+        }
+        .point9{
+            top:75%;
+            left:75%;
+        }
+        .point10{
+            top:92%;
+            left:96%;
+        }
+        .point11{
+            top:60%;
+            left:82%;
+        }
+        .point12{
+            top:35%;
+            left:96%;
+        }
+        .point13{
+            top:0%;
+            left:96%;
+        }
+        .point14{
+            top:20%;
+            left:75%;
+        }
+        .point15{
+            top:0%;
+            left:50%;
+        }
+        .point16{
+            top:10%;
+            left:35%;
+        }
+        .point17{
+            top:35%;
+            left:30%;
+        }
+        .point18{
+            top:60%;
+            left:25%;
+        }
+        .point19{
+            top:60%;
+            left:50%;
+        }
+        .point20{
+            top:35%;
+            left:60%;
+        }
+
+        #image-mask{
+            position:fixed;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            z-index:10;
+            background-image:url(img/background.png);
+            background-size:cover;
+        }
+
+        #default{
+            font-size:32px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="start_mask">
+        <p class="start_words">画面内の1〜20を順番にクリックしてください<br>(黒くなるようにしっかり押してね)</p>
+        <div class="point1">1</div>
+        <div class="point2">2</div>
+        <div class="point3">3</div>
+        <div class="point4">4</div>
+        <div class="point5">5</div>
+        <div class="point6">6</div>
+        <div class="point7">7</div>
+        <div class="point8">8</div>
+        <div class="point9">9</div>
+        <div class="point10">10</div>
+        <div class="point11">11</div>
+        <div class="point12">12</div>
+        <div class="point13">13</div>
+        <div class="point14">14</div>
+        <div class="point15">15</div>
+        <div class="point16">16</div>
+        <div class="point17">17</div>
+        <div class="point18">18</div>
+        <div class="point19">19</div>
+        <div class="point20" id="nextpage">20</div>
+    </div>
+    <div id="image-mask">
+        <p>30秒見てて</p>
+        <div id = "default">30</div>
+    </div>
+    <div id="mydiv" style="display:none;">
+    </div>
+    <script src="webgazer.js"></script>
+    <script>
+
+        $("#nextpage").click(function(){
+            $("#start_mask").css("display","none");
+            count_start();
+        });
+
+        $("#start_mask > div").click(function(){
+            $(this).css("background","black");
+        })
+
+        let count = 30;
+        let min = 0;
+        let sec = 0;
+        let stp = null;
+        let p = 0
+
+        function count_start(){
+            
+        stp = setInterval(count_down,1000);
+
+        function count_down(){
+            if(count === 1){
+                let display = document.getElementById("default");
+                location.href = "https://yamashita-ksk.sakura.ne.jp/webgazer/webgazer_2.html";
+                clearInterval(stp);
+            }else{
+                count--;
+                sec = count % 60;
+                let count_down = document.getElementById("default");
+                count_down.innerHTML = ("0"+sec).slice(-2);
+            }
+        }
+    }
+
+
+        storage = [];
+        let innerStorage = [];
+
+        window.onload = function() {
+            webgazer.setRegression('ridge')
+                .setTracker('clmtrackr')
+                .setGazeListener(function(data, _) {
+                    if(data == null){
+                        return;
+                    }
+                    innerStorage.push([data.x,data.y]);
+                })
+                .begin()
+                .showPredictionPoints(true);
+
+                    if(innerStorage == undefined){
+                        return;
+                    }else{
+                    setInterval(function(){
+                    storage.push(innerStorage[this.length]);
+                    exportCSV(storage);
+                    innerStorage = [];
+                },100);
+                    }
+
+            var width = 320;
+            var height = 240;
+            var topDist = '0px';
+            var leftDist = '0px';
+            
+            function exportCSV(content){
+                let line = content;
+                let json_text = JSON.stringify(line);
+                localStorage.setItem("xydata",json_text);
+            }
+            
+            var setup = function() {
+                var video = document.getElementById('webgazerVideoFeed');
+                video.style.display = 'block';
+                video.style.position = 'absolute';
+                video.style.top = topDist;
+                video.style.left = leftDist;
+                video.width = width;
+                video.height = height;
+                video.style.margin = '0px';
+        
+                webgazer.params.imgWidth = width;
+                webgazer.params.imgHeight = height;
+        
+                var overlay = document.createElement('canvas');
+                overlay.id = 'overlay';
+                overlay.style.position = 'absolute';
+                overlay.width = width;
+                overlay.height = height;
+                overlay.style.top = topDist;
+                overlay.style.left = leftDist;
+                overlay.style.margin = '0px';
+        
+                document.body.appendChild(overlay);
+        
+                var cl = webgazer.getTracker().clm;
+        
+                function drawLoop() {
+                    requestAnimFrame(drawLoop);
+                    overlay.getContext('2d').clearRect(0,0,width,height);
+                    if (cl.getCurrentPosition()) {
+                        cl.draw(overlay);
+                    }
+                }
+                drawLoop();
+            };
+        
+            function checkIfReady() {
+                if (webgazer.isReady()) {
+                    setup();
+                } else {
+                    setTimeout(checkIfReady, 1000);
+                }
+            }
+            setTimeout(checkIfReady,1000);
+        };
+        
+        
+        window.onbeforeunload = function() {
+            webgazer.end();
+            window.localStorage.removeItem("webgazerGlobalData");
+        }
+    </script>    
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ヒートマップ</title>
+    <link rel="icon" type="image/png" href="img/eye.jpg">    
+    <link rel="stylesheet" href="css/heat_styles.css">
+    <script src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+
+<div id="heatarea">
+    <div id="area1" class="allarea"></div>
+    <div id="area2" class="allarea"></div>
+    <div id="area3" class="allarea"></div>
+    <div id="area4" class="allarea"></div>
+    <div id="area5" class="allarea"></div>
+    <div id="area6" class="allarea"></div>
+    <div id="area7" class="allarea"></div>
+    <div id="area8" class="allarea"></div>
+    <div id="area9" class="allarea"></div>
+    <div id="area10" class="allarea"></div>
+    <div id="area11" class="allarea"></div>
+    <div id="area12" class="allarea"></div>
+    <div id="area13" class="allarea"></div>
+    <div id="area14" class="allarea"></div>
+    <div id="area15" class="allarea"></div>
+    <div id="area16" class="allarea"></div>
+    <div id="area17" class="allarea"></div>
+    <div id="area18" class="allarea"></div>
+    <div id="area19" class="allarea"></div>
+    <div id="area20" class="allarea"></div>
+    <div id="area21" class="allarea"></div>
+    <div id="area22" class="allarea"></div>
+    <div id="area23" class="allarea"></div>
+    <div id="area24" class="allarea"></div>
+    <div id="area25" class="allarea"></div>
+    <div id="area26" class="allarea"></div>
+    <div id="area27" class="allarea"></div>
+    <div id="area28" class="allarea"></div>
+    <div id="area29" class="allarea"></div>
+    <div id="area30" class="allarea"></div>
+    <div id="area31" class="allarea"></div>
+    <div id="area32" class="allarea"></div>
+    <div id="area33" class="allarea"></div>
+    <div id="area34" class="allarea"></div>
+    <div id="area35" class="allarea"></div>
+</div>
+
+
+    <script>
+        let area1 = 0;
+        let area2 = 0;
+        let area3 = 0;
+        let area4 = 0;
+        let area5 = 0;
+        let area6 = 0;
+        let area7 = 0;
+        let area8 = 0;
+        let area9 = 0;
+        let area10 = 0;
+        let area11 = 0;
+        let area12 = 0;
+        let area13 = 0;
+        let area14 = 0;
+        let area15 = 0;
+        let area16 = 0;
+        let area17 = 0;
+        let area18 = 0;
+        let area19 = 0;
+        let area20 = 0;
+        let area21 = 0;
+        let area22 = 0;
+        let area23 = 0;
+        let area24 = 0;
+        let area25 = 0;
+        let area26 = 0;
+        let area27 = 0;
+        let area28 = 0;
+        let area29 = 0;
+        let area30 = 0;
+        let area31 = 0;
+        let area32 = 0;
+        let area33 = 0;
+        let area34 = 0;
+        let area35 = 0;
+        let data = localStorage.getItem("xydata");
+        let x = [];
+        let y = [];
+        let xy = JSON.parse(data);
+        console.log(xy);
+        for (let i = 0; i < xy.length; i++){
+            // console.log(xy);
+            if(xy[i] === null){
+                console.log("nullです");
+            }else if(xy[i][0] <= 200 && xy[i][1] <= 160 ){
+                area1++;
+            }else if(xy[i][0] <= 400 && xy[i][1] <= 160 ){
+                area2++;
+            }else if(xy[i][0] <= 600 && xy[i][1] <= 160 ){
+                area3++;
+            }else if(xy[i][0] <= 800 && xy[i][1] <= 160 ){
+                area4++;
+            }else if(xy[i][0] <= 1000 && xy[i][1] <= 160 ){
+                area5++;
+            }else if(xy[i][0] <= 1200 && xy[i][1] <= 160){
+                area6++;
+            }else if(xy[i][0] <= 1400 && xy[i][1] <= 160 ){
+                area7++;
+            }else if(xy[i][0] <= 200 &&xy[i][1] <= 320 ){
+                area8++;
+            }else if(xy[i][0] <= 400 && xy[i][1] <= 320 ){
+                area9++;
+            }else if(xy[i][0] <= 600 && xy[i][1] <= 320 ){
+                area10++;
+            }else if(xy[i][0] <= 800 && xy[i][1] <= 320 ){
+                area11++;
+            }else if(xy[i][0] <= 1000 && xy[i][1] <= 320 ){
+                area12++;
+            }else if(xy[i][0] <= 1200 && xy[i][1] <= 320 ){
+                area13++;
+            }else if(xy[i][0] <= 1400 && xy[i][1] <= 320 ){
+                area14++;
+            }else if(xy[i][0] <= 200 && xy[i][1] <= 480 ){
+                area15++;
+            }else if(xy[i][0] <= 400 && xy[i][1] <= 480 ){
+                area16++;
+            }else if(xy[i][0] <= 600 && xy[i][1] <= 480 ){
+                area17++;
+            }else if(xy[i][0] <= 800 && xy[i][1] <= 480 ){
+                area18++;
+            }else if(xy[i][0] <= 1000 && xy[i][1] <= 480 ){
+                area19++;
+            }else if(xy[i][0] <= 1200 && xy[i][1] <= 480 ){
+                area20++;
+            }else if(xy[i][0] <= 1400 && xy[i][1] <= 480 ){
+                area21++;
+            }else if(xy[i][0] <= 200 && xy[i][1] <= 640 ){
+                area22++;
+            }else if(xy[i][0] <= 400 && xy[i][1] <= 640 ){
+                area23++;
+            }else if(xy[i][0] <= 600 && xy[i][1] <= 640 ){
+                area24++;
+            }else if(xy[i][0] <= 800 && xy[i][1] <= 640 ){
+                area25++;
+            }else if(xy[i][0] <= 1000 && xy[i][1] <= 640 ){
+                area26++;
+            }else if(xy[i][0] <= 1200 && xy[i][1] <= 640 ){
+                area27++;
+            }else if(xy[i][0] <= 1400 && xy[i][1] <= 640 ){
+                area28++;
+            }else if(xy[i][0] <= 200 && xy[i][1] <= 800 ){
+                area29++;
+            }else if(xy[i][0] <= 400 && xy[i][1] <= 800 ){
+                area30++;
+            }else if(xy[i][0] <= 600 && xy[i][1] <= 800 ){
+                area31++;
+            }else if(xy[i][0] <= 800 && xy[i][1] <= 800 ){
+                area32++;
+            }else if(xy[i][0] <= 1000 && xy[i][1] <= 800 ){
+                area33++;
+            }else if(xy[i][0] <= 1200 && xy[i][1] <= 800 ){
+                area34++;
+            }else if(xy[i][0] <= 1400 && xy[i][1] <= 800 ){
+                area35++;
+            }
+            }
+            
+
+        for(let t = 1; t <= 35 ; t++){
+            let currentArea = "area" + [t];
+            let currentPoint = eval(currentArea) * 5;
+            console.log(currentArea)
+            // console.log(eval(currentArea));
+            // $("#" + currentArea).text(currentPoint);
+            if(currentPoint <= 25 ){
+                $("#" + currentArea).css("background","rgba(255, 255, 255, 0.7)");
+            }else if(currentPoint <= 50){
+                $("#" + currentArea).css("background","rgba(255, 225, 225, 0.7)");
+            }else if(currentPoint <= 75){
+                $("#" + currentArea).css("background","rgba(255, 200, 200, 0.7)");
+            }else if(currentPoint <= 125){
+                $("#" + currentArea).css("background","rgba(255, 175, 175, 0.7)");
+            }else if(currentPoint <= 150){
+                $("#" + currentArea).css("background","rgba(255, 120, 120, 0.7)");
+            }else if(currentPoint <= 175){
+                $("#" + currentArea).css("background","rgba(255, 100, 100, 0.7)");
+            }else if(currentPoint <= 200){
+                $("#" + currentArea).css("background","rgba(255, 80, 80, 0.7)");
+            }else if(currentPoint <= 225){
+                $("#" + currentArea).css("background","rgba(255, 50, 50, 0.7)");
+            }else if(currentPoint <= 250){
+                $("#" + currentArea).css("background","rgba(255, 30, 30, 0.7)");
+            }else if(currentPoint <= 275){
+                $("#" + currentArea).css("background","rgba(255, 20, 20, 0.7)");
+            }else if(currentPoint <= 1000){
+                $("#" + currentArea).css("background","rgba(255, 0, 0, 0.7)");
+            }
+        }
+
+        
+
+    </script>
+</body>
+</html>
