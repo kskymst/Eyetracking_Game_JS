@@ -23,7 +23,3 @@
 ## Language
 
 HTML, CSS, Javascript(Webgazer.js), jQuery
-
-## Created date
-
-2017/11/28
